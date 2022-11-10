@@ -1,33 +1,26 @@
-
-    import { useQuery, gql,  } from '@apollo/client'
+import { useQuery, gql } from '@apollo/client'
 const GET_POKEMONS = gql`
-  query{
-  allPokemon{
-    name
-    locations
-    {
-      name
-      region
-      {
-        name
-      }
+    query {
+        allPokemon {
+            name
+            locations {
+                name
+                region {
+                    name
+                }
+            }
+            shape
+        }
     }
-    shape
-  }
-}
-  `;
+`
 
-export const useGetPokemons= ( sortField="price", order="desc")=>{
-
-   const { data, error, loading } = useQuery(GET_POKEMONS, {
+export const useGetPokemons = (sortField = 'price', order = 'desc') => {
+    const { data, error, loading } = useQuery(GET_POKEMONS, {
         variables: {
             sortField,
-            order
-        }
+            order,
+        },
     })
-    
 
-    return {error, data, loading, }
-
-
+    return { error, data, loading }
 }

@@ -1,5 +1,3 @@
-
-export enum ActionTypes {
-}
+export enum ActionTypes {}
 
 export type Actions = null
