@@ -9,6 +9,7 @@ import {
 } from '@apollo/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './components/HomePage'
+import NavigationBar from './components/NavigationBar'
 
 const defaultOptions: DefaultOptions = {
     watchQuery: {
@@ -29,35 +30,10 @@ const client = new ApolloClient({
 function App() {
     return (
         <ApolloProvider client={client}>
+            <NavigationBar />
             <BrowserRouter>
                 <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <div className="App">
-                                <header className="App-header">
-                                    <img
-                                        src={logo}
-                                        className="App-logo"
-                                        alt="logo"
-                                    />
-                                    <p>
-                                        Edit <code>src/App.tsx</code> and save
-                                        to reload.
-                                    </p>
-                                    <a
-                                        className="App-link"
-                                        href="https://reactjs.org"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        Learn React
-                                    </a>
-                                </header>
-                                <HomePage />
-                            </div>
-                        }
-                    />
+                    <Route path="/" element={<HomePage />} />
                 </Routes>
             </BrowserRouter>
         </ApolloProvider>

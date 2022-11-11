@@ -5,6 +5,8 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import configureStore from './store/store'
 import { Provider } from 'react-redux'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 const store = configureStore()
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)

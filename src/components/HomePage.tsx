@@ -1,19 +1,17 @@
 import React from 'react'
 import { useGetPokemons } from '../hooks/useGetPokemons.hook'
+import PokemonsContainer from './Pokemons/PokemonsContainer'
 
 export default function HomePage() {
     const { data } = useGetPokemons()
+    const pokemons = data?.allPokemon
     if (data) {
         return (
             <>
-                <div className="body-container">will this work</div>
+                <PokemonsContainer pokemons={pokemons} />
             </>
         )
     }
 
-    return (
-        <>
-            <div>sad</div>
-        </>
-    )
+    return <>loading</>
 }

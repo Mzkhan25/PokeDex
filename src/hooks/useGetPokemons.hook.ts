@@ -1,24 +1,23 @@
 import { useQuery, gql } from '@apollo/client'
 const GET_POKEMONS = gql`
-    query {
-        allPokemon {
+    query ($limit: Int!) {
+        allPokemon(limit: $limit) {
             name
-            locations {
-                name
-                region {
-                    name
-                }
-            }
             shape
+            types {
+                name
+            }
+            sprites {
+                front_default
+            }
         }
     }
 `
 
-export const useGetPokemons = (sortField = 'price', order = 'desc') => {
+export const useGetPokemons = (limit = 10) => {
     const { data, error, loading } = useQuery(GET_POKEMONS, {
         variables: {
-            sortField,
-            order,
+            limit,
         },
     })
 
