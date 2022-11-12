@@ -5,15 +5,25 @@ import PokemonsType from './PokemonsType'
 
 interface Props {
     pokemon: IPokemon
+    addFavorite: (pokemon: IPokemon) => void
 }
 
 export default function Pokemons(props: Props) {
-    const { pokemon } = props
+    const { pokemon, addFavorite } = props
 
     return (
         <>
             <Card className="w-25 my-2">
                 <Card.Img variant="top" src={pokemon?.sprites?.front_default} />
+                <Card.ImgOverlay>
+                    <i
+                        className="fa fa-heart-o pull-right"
+                        onClick={() => {
+                            console.log('click')
+                            addFavorite(pokemon)
+                        }}
+                    />
+                </Card.ImgOverlay>
                 <Card.Body>
                     <Card.Title className="text-capitalize">
                         {pokemon?.name}

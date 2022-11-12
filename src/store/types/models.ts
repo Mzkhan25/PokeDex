@@ -15,4 +15,9 @@ export interface IPokemon {
 export interface IPokeDexState {
     loading: boolean
     pokemons: [IPokemon] | null
+    favoritePokemons: [IPokemon] | null
+}
+
+export interface GlobalState {
+    pokemonState: IPokeDexState
 }

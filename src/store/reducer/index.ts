@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { pokeDexReducer } from './PokeDex.reducer'
 
 const rootReducer = combineReducers({
-    pokemons: pokeDexReducer,
+    pokemonState: pokeDexReducer,
 })
 
 export default rootReducer

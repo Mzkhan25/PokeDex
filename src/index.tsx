@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals'
 import configureStore from './store/store'
 import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 const store = configureStore()
 

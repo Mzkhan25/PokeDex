@@ -1,4 +1,3 @@
-import { getPokemons } from './../service/PokemonService'
 import { applyMiddleware, createStore } from 'redux'
 import createSagaMiddlware from 'redux-saga'
 

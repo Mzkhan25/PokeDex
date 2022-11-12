@@ -4,16 +4,23 @@ import Pokemons from './Pokemons'
 
 interface Props {
     pokemons: [IPokemon]
+    addFavorite: (pokemon: IPokemon) => void
 }
 
 export default function PokemonsContainer(props: Props) {
-    const { pokemons } = props
+    const { pokemons, addFavorite } = props
 
     return (
         <>
             <div className="container d-flex flex-row bd-highlight flex-wrap">
                 {pokemons.map((pokemon: IPokemon, index: Key) => {
-                    return <Pokemons pokemon={pokemon} key={index} />
+                    return (
+                        <Pokemons
+                            pokemon={pokemon}
+                            key={index}
+                            addFavorite={addFavorite}
+                        />
+                    )
                 })}
             </div>
         </>

@@ -1,16 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { IPokeDexState, IPokemon } from '../store/types/models'
+import { addFavorite } from '../store/actions/PokeDex.action'
+import { IPokemon, GlobalState } from '../store/types/models'
 import PokemonsContainer from './Pokemons/PokemonsContainer'
 
-const HomePage = (props: any) => {
-    const { state } = props
+interface Props {
+    pokemons: [IPokemon] | null
+    addFavorite: (pokemon: IPokemon) => void
+}
 
-    console.log('pokemons', state)
-    if (state.pokemons) {
+const HomePage = (props: Props) => {
+    const { pokemons, addFavorite } = props
+
+    console.log('pokemons', pokemons)
+    if (pokemons) {
         return (
             <>
-                <PokemonsContainer pokemons={state.pokemons} />
+                <PokemonsContainer
+                    addFavorite={addFavorite}
+                    pokemons={pokemons}
+                />
             </>
         )
     }
@@ -18,12 +27,16 @@ const HomePage = (props: any) => {
     return <>loading</>
 }
 
-const mapStateToProps = (state: IPokeDexState) => {
-    return { state: state.pokemons }
+const mapStateToProps = (state: GlobalState) => {
+    return { pokemons: state?.pokemonState?.pokemons }
 }
 
-const mapDispatchToProps = () => {
-    return {}
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addFavorite: (pokemon: IPokemon) => {
+            dispatch(addFavorite(pokemon))
+        },
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
