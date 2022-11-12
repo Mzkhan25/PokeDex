@@ -11,3 +11,8 @@ export interface IPokemon {
     types: [PokemonType]
     sprites: Sprite
 }
+
+export interface IPokeDexState {
+    loading: boolean
+    pokemons: [IPokemon] | null
+}

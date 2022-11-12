@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
-import { IPokemon } from '../../store/types/pokemon'
+import { IPokemon } from '../../store/types/models'
 import PokemonsType from './PokemonsType'
 
 interface Props {
@@ -18,9 +18,9 @@ export default function Pokemons(props: Props) {
                     <Card.Title className="text-capitalize">
                         {pokemon?.name}
                     </Card.Title>
-                    <Card.Text>
+                    <Card.Body>
                         <PokemonsType pokemonsType={pokemon.types} />
-                    </Card.Text>
+                    </Card.Body>
                 </Card.Body>
             </Card>
         </>

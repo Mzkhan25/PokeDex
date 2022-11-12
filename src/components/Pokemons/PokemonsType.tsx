@@ -1,5 +1,5 @@
 import React, { Key } from 'react'
-import { PokemonType } from '../../store/types/pokemon'
+import { PokemonType } from '../../store/types/models'
 
 interface Props {
     pokemonsType: [PokemonType]

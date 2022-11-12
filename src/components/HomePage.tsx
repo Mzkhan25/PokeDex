@@ -1,17 +1,29 @@
 import React from 'react'
-import { useGetPokemons } from '../hooks/useGetPokemons.hook'
+import { connect } from 'react-redux'
+import { IPokeDexState, IPokemon } from '../store/types/models'
 import PokemonsContainer from './Pokemons/PokemonsContainer'
 
-export default function HomePage() {
-    const { data } = useGetPokemons()
-    const pokemons = data?.allPokemon
-    if (data) {
+const HomePage = (props: any) => {
+    const { state } = props
+
+    console.log('pokemons', state)
+    if (state.pokemons) {
         return (
             <>
-                <PokemonsContainer pokemons={pokemons} />
+                <PokemonsContainer pokemons={state.pokemons} />
             </>
         )
     }
 
     return <>loading</>
 }
+
+const mapStateToProps = (state: IPokeDexState) => {
+    return { state: state.pokemons }
+}
+
+const mapDispatchToProps = () => {
+    return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
