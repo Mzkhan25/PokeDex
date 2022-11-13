@@ -7,6 +7,7 @@ import configureStore from './store/store'
 import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.min.css'
+import { HashRouter } from 'react-router-dom'
 
 const store = configureStore()
 
@@ -14,7 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
     <Provider store={store}>
         <React.StrictMode>
-            <App />
+            <HashRouter>
+                <App />
+            </HashRouter>
         </React.StrictMode>
     </Provider>
 )
