@@ -1,4 +1,4 @@
-import { IPokemon } from './../types/models'
+import { ISort, IPokemon } from './../types/models'
 export enum PokemonActionTypes {
     POKEMONS_GET_ALL = '[POKEMONS] Get All',
     POKEMONS_GET_ALL_SUCCESS = '[POKEMONS] Get All Success',
@@ -10,6 +10,7 @@ export enum PokemonActionTypes {
     POKEMONS_GET_FAVORITE_SUCCESS = '[POKEMONS] Get Favorite Success',
     POKEMONS_GET_FAVORITE_FAIL = '[POKEMONS] Get Favorite Fail',
     POKEMONS_SEARCH_BY_NAME = '[POKEMONS] Search by name',
+    POKEMONS_UPDATE_SORT = '[POKEMONS] Update Sort',
 }
 
 interface IPokemonsGetAll {
@@ -17,7 +18,7 @@ interface IPokemonsGetAll {
 }
 interface IPokemonsGetAllSuccess {
     readonly type: PokemonActionTypes.POKEMONS_GET_ALL_SUCCESS
-    payload: [IPokemon]
+    payload: IPokemon[]
 }
 
 interface IPokemonsGetAllFail {
@@ -42,7 +43,7 @@ interface IPokemonsGetFavorite {
 }
 interface IPokemonGetFavoriteSuccess {
     readonly type: PokemonActionTypes.POKEMONS_GET_FAVORITE_SUCCESS
-    payload: [IPokemon]
+    payload: IPokemon[]
 }
 
 interface IPokemonGetFavoriteFail {
@@ -53,6 +54,13 @@ interface IPokemonSearchByName {
     readonly type: PokemonActionTypes.POKEMONS_SEARCH_BY_NAME
     payload: string
 }
+
+interface IPokemonUpdateSort {
+    readonly type: PokemonActionTypes.POKEMONS_UPDATE_SORT
+
+    payload: ISort
+}
+
 export type Actions =
     | IPokemonsGetAll
     | IPokemonsGetAllSuccess
@@ -64,6 +72,7 @@ export type Actions =
     | IPokemonGetFavoriteSuccess
     | IPokemonGetFavoriteFail
     | IPokemonSearchByName
+    | IPokemonUpdateSort
 
 export function getAll(): IPokemonsGetAll {
     return {
@@ -71,7 +80,7 @@ export function getAll(): IPokemonsGetAll {
     }
 }
 
-export function getAllSuccess(pokemons: [IPokemon]): IPokemonsGetAllSuccess {
+export function getAllSuccess(pokemons: IPokemon[]): IPokemonsGetAllSuccess {
     return {
         type: PokemonActionTypes.POKEMONS_GET_ALL_SUCCESS,
         payload: pokemons,
@@ -110,7 +119,7 @@ export function getFavorite(): IPokemonsGetFavorite {
     }
 }
 export function getFavoriteSuccess(
-    pokemon: [IPokemon]
+    pokemon: IPokemon[]
 ): IPokemonGetFavoriteSuccess {
     return {
         type: PokemonActionTypes.POKEMONS_GET_FAVORITE_SUCCESS,
@@ -128,5 +137,12 @@ export function searchByName(name: string): IPokemonSearchByName {
     return {
         type: PokemonActionTypes.POKEMONS_SEARCH_BY_NAME,
         payload: name,
+    }
+}
+
+export function updateSort(sort: ISort): IPokemonUpdateSort {
+    return {
+        type: PokemonActionTypes.POKEMONS_UPDATE_SORT,
+        payload: sort,
     }
 }

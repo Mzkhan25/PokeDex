@@ -1,3 +1,8 @@
+export enum ISort {
+    SORT_BY_NAME_ASC = 'Sort by name ascending',
+    SORT_BY_NAME_DESC = 'Sort by name descending',
+}
+
 export interface PokemonType {
     name: string
 }
@@ -14,9 +19,10 @@ export interface IPokemon {
 
 export interface IPokeDexState {
     loading: boolean
-    pokemons: [IPokemon] | null
-    favoritePokemons: [IPokemon] | null
+    pokemons: IPokemon[] | null
+    favoritePokemons: IPokemon[] | null
     searchTerm: string
+    sort?: ISort
 }
 
 export interface GlobalState {

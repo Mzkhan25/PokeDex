@@ -13,7 +13,6 @@ export const pokeDexReducer = (state = initialState, action: any) => {
         case PokemonActionTypes.POKEMONS_GET_ALL_SUCCESS:
             state = { ...state, pokemons: action.payload, loading: false }
             return state
-
         case PokemonActionTypes.POKEMONS_ADD_FAVORITE_SUCCESS:
             state = { ...state, favoritePokemons: action.payload }
             return state
@@ -22,6 +21,9 @@ export const pokeDexReducer = (state = initialState, action: any) => {
             return state
         case PokemonActionTypes.POKEMONS_SEARCH_BY_NAME:
             state = { ...state, searchTerm: action.payload }
+            return state
+        case PokemonActionTypes.POKEMONS_UPDATE_SORT:
+            state = { ...state, sort: action.payload }
             return state
         default:
             return state

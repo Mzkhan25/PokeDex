@@ -5,7 +5,7 @@ import { IPokemon, GlobalState } from '../store/types/models'
 import PokemonsContainer from './Pokemons/PokemonsContainer'
 
 interface Props {
-    favoritePokemons: [IPokemon] | null
+    favoritePokemons: IPokemon[] | null
 }
 
 const Favorites = (props: Props) => {

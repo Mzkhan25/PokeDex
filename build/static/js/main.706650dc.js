@@ -18736,12 +18736,10 @@
                                 i.size &&
                                     i.forEach(function (e) {
                                         var r = Fn('legacyOneTimeQuery'),
-                                            i = t
-                                                .getQuery(r)
-                                                .init({
-                                                    document: e.query,
-                                                    variables: e.variables,
-                                                }),
+                                            i = t.getQuery(r).init({
+                                                document: e.query,
+                                                variables: e.variables,
+                                            }),
                                             o = new Gn({
                                                 queryManager: t,
                                                 queryInfo: i,
@@ -31735,16 +31733,14 @@
                     )
                 },
                 $h = Wh()
-            r
-                .createRoot(document.getElementById('root'))
-                .render(
-                    (0, Za.jsx)(Ua, {
-                        store: $h,
-                        children: (0, Za.jsx)(e.StrictMode, {
-                            children: (0, Za.jsx)(Df, {}),
-                        }),
-                    })
-                ),
+            r.createRoot(document.getElementById('root')).render(
+                (0, Za.jsx)(Ua, {
+                    store: $h,
+                    children: (0, Za.jsx)(e.StrictMode, {
+                        children: (0, Za.jsx)(Df, {}),
+                    }),
+                })
+            ),
                 If()
         })()
 })()

@@ -1,14 +1,12 @@
-import { GlobalState, IPokeDexState } from './../types/models'
-import { stat } from 'fs'
 import { IPokemon } from '../types/models'
-import { all, call, put, select, takeLatest } from 'redux-saga/effects'
+import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { PokemonActionTypes } from '../actions/PokeDex.action'
 import { getPokemons } from '../../service/PokemonService'
 import * as actions from '../actions/PokeDex.action'
 
 function* loadTasks() {
     try {
-        const tasks: [IPokemon] = yield call(getPokemons)
+        const tasks: IPokemon[] = yield call(getPokemons)
         yield put(actions.getAllSuccess(tasks))
     } catch (e) {
         yield put(actions.getAllFail())
