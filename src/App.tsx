@@ -6,7 +6,13 @@ import {
     DefaultOptions,
     InMemoryCache,
 } from '@apollo/client'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import {
+    BrowserRouter,
+    createBrowserRouter,
+    Route,
+    RouterProvider,
+    Routes,
+} from 'react-router-dom'
 import HomePage from './components/HomePage'
 import NavigationBar from './components/NavigationBar'
 import Favorites from './components/Favorites'
@@ -28,17 +34,28 @@ const client = new ApolloClient({
 })
 
 function App() {
+    const router = createBrowserRouter([
+        {
+            path: '/',
+            element: <HomePage />,
+        },
+        {
+            path: '/favorites',
+            element: <HomePage />,
+        },
+    ])
     return (
         <ApolloProvider client={client}>
             <NavigationBar />
-            <BrowserRouter>
+            {/* <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                 </Routes>
                 <Routes>
-                    <Route path="/favorites" element={<Favorites />} />
+                    <Route path={`/favorites`} element={<Favorites />} />
                 </Routes>
-            </BrowserRouter>
+            </BrowserRouter> */}
+            <RouterProvider router={router} />
         </ApolloProvider>
     )
 }
