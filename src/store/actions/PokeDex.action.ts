@@ -9,6 +9,7 @@ export enum PokemonActionTypes {
     POKEMONS_GET_FAVORITE = '[POKEMONS] Get Favorite',
     POKEMONS_GET_FAVORITE_SUCCESS = '[POKEMONS] Get Favorite Success',
     POKEMONS_GET_FAVORITE_FAIL = '[POKEMONS] Get Favorite Fail',
+    POKEMONS_SEARCH_BY_NAME = '[POKEMONS] Search by name',
 }
 
 interface IPokemonsGetAll {
@@ -48,6 +49,10 @@ interface IPokemonGetFavoriteFail {
     readonly type: PokemonActionTypes.POKEMONS_GET_FAVORITE_FAIL
 }
 
+interface IPokemonSearchByName {
+    readonly type: PokemonActionTypes.POKEMONS_SEARCH_BY_NAME
+    payload: string
+}
 export type Actions =
     | IPokemonsGetAll
     | IPokemonsGetAllSuccess
@@ -58,6 +63,7 @@ export type Actions =
     | IPokemonsGetFavorite
     | IPokemonGetFavoriteSuccess
     | IPokemonGetFavoriteFail
+    | IPokemonSearchByName
 
 export function getAll(): IPokemonsGetAll {
     return {
@@ -115,5 +121,12 @@ export function getFavoriteSuccess(
 export function getFavoriteFail(): IPokemonGetFavoriteFail {
     return {
         type: PokemonActionTypes.POKEMONS_GET_FAVORITE_FAIL,
+    }
+}
+
+export function searchByName(name: string): IPokemonSearchByName {
+    return {
+        type: PokemonActionTypes.POKEMONS_SEARCH_BY_NAME,
+        payload: name,
     }
 }

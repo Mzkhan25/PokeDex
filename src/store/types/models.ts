@@ -16,6 +16,7 @@ export interface IPokeDexState {
     loading: boolean
     pokemons: [IPokemon] | null
     favoritePokemons: [IPokemon] | null
+    searchTerm: string
 }
 
 export interface GlobalState {

@@ -3,7 +3,7 @@ import { IPokemon } from '../../store/types/models'
 import Pokemons from './Pokemons'
 
 interface Props {
-    pokemons: [IPokemon]
+    pokemons: IPokemon[]
     addFavorite?: (pokemon: IPokemon) => void
 }
 

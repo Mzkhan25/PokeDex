@@ -5,6 +5,7 @@ const initialState: IPokeDexState = {
     loading: true,
     pokemons: null,
     favoritePokemons: null,
+    searchTerm: '',
 }
 
 export const pokeDexReducer = (state = initialState, action: any) => {
@@ -18,6 +19,9 @@ export const pokeDexReducer = (state = initialState, action: any) => {
             return state
         case PokemonActionTypes.POKEMONS_GET_FAVORITE_SUCCESS:
             state = { ...state, favoritePokemons: action.payload }
+            return state
+        case PokemonActionTypes.POKEMONS_SEARCH_BY_NAME:
+            state = { ...state, searchTerm: action.payload }
             return state
         default:
             return state

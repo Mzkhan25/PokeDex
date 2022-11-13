@@ -5,19 +5,20 @@ import { IPokemon, GlobalState } from '../store/types/models'
 import PokemonsContainer from './Pokemons/PokemonsContainer'
 
 interface Props {
-    pokemons: [IPokemon] | null
+    pokemons: IPokemon[] | null
+    searchTerm?: string
     addFavorite: (pokemon: IPokemon) => void
 }
 
 const HomePage = (props: Props) => {
-    const { pokemons, addFavorite } = props
-    if (pokemons) {
+    const { pokemons, searchTerm, addFavorite } = props
+    const pok = searchTerm
+        ? pokemons?.filter((pokemon) => pokemon.name.includes(searchTerm)) || []
+        : pokemons
+    if (pok) {
         return (
             <>
-                <PokemonsContainer
-                    addFavorite={addFavorite}
-                    pokemons={pokemons}
-                />
+                <PokemonsContainer addFavorite={addFavorite} pokemons={pok} />
             </>
         )
     }
@@ -26,7 +27,10 @@ const HomePage = (props: Props) => {
 }
 
 const mapStateToProps = (state: GlobalState) => {
-    return { pokemons: state?.pokemonState?.pokemons }
+    return {
+        pokemons: state?.pokemonState?.pokemons,
+        searchTerm: state?.pokemonState?.searchTerm,
+    }
 }
 
 const mapDispatchToProps = (dispatch: any) => {

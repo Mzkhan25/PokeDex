@@ -11,7 +11,7 @@ function* loadTasks() {
         const tasks: [IPokemon] = yield call(getPokemons)
         yield put(actions.getAllSuccess(tasks))
     } catch (e) {
-        console.log(e)
+        yield put(actions.getAllFail())
     }
 }
 
@@ -34,7 +34,7 @@ function* addFavoritesSaga(action: any) {
 
         yield put(actions.addFavoriteSuccess(action.payload))
     } catch (e) {
-        console.log(e)
+        yield put(actions.addFavoriteFail())
     }
 }
 function* getFavoriteSaga() {
@@ -49,7 +49,7 @@ function* getFavoriteSaga() {
 
         yield put(actions.getFavoriteSuccess(favoritePokemons))
     } catch (e) {
-        console.log(e)
+        yield put(actions.getFavoriteFail())
     }
 }
 
