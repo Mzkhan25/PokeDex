@@ -2,7 +2,6 @@ import { gql } from '@apollo/client'
 import client from './client'
 
 export const getPokemons = () => {
-    const limit = 10
     return client
         .query({
             query: gql`

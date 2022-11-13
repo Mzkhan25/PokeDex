@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Dropdown, DropdownButton } from 'react-bootstrap'
+import { Dropdown, DropdownButton } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { addFavorite, updateSort } from '../store/actions/PokeDex.action'
 import { IPokemon, GlobalState, ISort } from '../store/types/models'
