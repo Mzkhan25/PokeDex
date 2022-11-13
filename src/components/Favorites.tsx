@@ -5,19 +5,15 @@ import { IPokemon, GlobalState } from '../store/types/models'
 import PokemonsContainer from './Pokemons/PokemonsContainer'
 
 interface Props {
-    pokemons: [IPokemon] | null
-    addFavorite: (pokemon: IPokemon) => void
+    favoritePokemons: [IPokemon] | null
 }
 
-const HomePage = (props: Props) => {
-    const { pokemons, addFavorite } = props
-    if (pokemons) {
+const Favorites = (props: Props) => {
+    const { favoritePokemons } = props
+    if (favoritePokemons) {
         return (
             <>
-                <PokemonsContainer
-                    addFavorite={addFavorite}
-                    pokemons={pokemons}
-                />
+                <PokemonsContainer pokemons={favoritePokemons} />
             </>
         )
     }
@@ -26,7 +22,7 @@ const HomePage = (props: Props) => {
 }
 
 const mapStateToProps = (state: GlobalState) => {
-    return { pokemons: state?.pokemonState?.pokemons }
+    return { favoritePokemons: state?.pokemonState?.favoritePokemons }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -37,4 +33,4 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites)

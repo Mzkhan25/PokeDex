@@ -3,7 +3,7 @@ import createSagaMiddlware from 'redux-saga'
 
 import rootReducers from './reducer'
 import { sagas } from './saga'
-import { getAll } from './actions/PokeDex.action'
+import { getAll, getFavorite } from './actions/PokeDex.action'
 
 const sagaMiddleware = createSagaMiddlware()
 
@@ -12,6 +12,7 @@ const configureStore = () => {
 
     sagaMiddleware.run(sagas)
     store.dispatch(getAll())
+    store.dispatch(getFavorite())
 
     return store
 }

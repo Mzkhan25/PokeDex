@@ -6,6 +6,9 @@ export enum PokemonActionTypes {
     POKEMONS_ADD_FAVORITE = '[POKEMONS] Add Favorite',
     POKEMONS_ADD_FAVORITE_SUCCESS = '[POKEMONS] Add Favorite Success',
     POKEMONS_ADD_FAVORITE_FAIL = '[POKEMONS] Add Favorite Fail',
+    POKEMONS_GET_FAVORITE = '[POKEMONS] Get Favorite',
+    POKEMONS_GET_FAVORITE_SUCCESS = '[POKEMONS] Get Favorite Success',
+    POKEMONS_GET_FAVORITE_FAIL = '[POKEMONS] Get Favorite Fail',
 }
 
 interface IPokemonsGetAll {
@@ -33,6 +36,18 @@ interface IPokemonAddFavoriteFail {
     readonly type: PokemonActionTypes.POKEMONS_ADD_FAVORITE_FAIL
 }
 
+interface IPokemonsGetFavorite {
+    readonly type: PokemonActionTypes.POKEMONS_GET_FAVORITE
+}
+interface IPokemonGetFavoriteSuccess {
+    readonly type: PokemonActionTypes.POKEMONS_GET_FAVORITE_SUCCESS
+    payload: [IPokemon]
+}
+
+interface IPokemonGetFavoriteFail {
+    readonly type: PokemonActionTypes.POKEMONS_GET_FAVORITE_FAIL
+}
+
 export type Actions =
     | IPokemonsGetAll
     | IPokemonsGetAllSuccess
@@ -40,6 +55,9 @@ export type Actions =
     | IPokemonAddFavorite
     | IPokemonAddFavoriteSuccess
     | IPokemonAddFavoriteFail
+    | IPokemonsGetFavorite
+    | IPokemonGetFavoriteSuccess
+    | IPokemonGetFavoriteFail
 
 export function getAll(): IPokemonsGetAll {
     return {
@@ -78,5 +96,24 @@ export function addFavoriteSuccess(
 export function addFavoriteFail(): IPokemonAddFavoriteFail {
     return {
         type: PokemonActionTypes.POKEMONS_ADD_FAVORITE_FAIL,
+    }
+}
+export function getFavorite(): IPokemonsGetFavorite {
+    return {
+        type: PokemonActionTypes.POKEMONS_GET_FAVORITE,
+    }
+}
+export function getFavoriteSuccess(
+    pokemon: [IPokemon]
+): IPokemonGetFavoriteSuccess {
+    return {
+        type: PokemonActionTypes.POKEMONS_GET_FAVORITE_SUCCESS,
+        payload: pokemon,
+    }
+}
+
+export function getFavoriteFail(): IPokemonGetFavoriteFail {
+    return {
+        type: PokemonActionTypes.POKEMONS_GET_FAVORITE_FAIL,
     }
 }

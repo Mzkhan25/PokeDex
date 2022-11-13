@@ -11,10 +11,12 @@ export const pokeDexReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case PokemonActionTypes.POKEMONS_GET_ALL_SUCCESS:
             state = { ...state, pokemons: action.payload, loading: false }
-            console.log(state)
             return state
 
         case PokemonActionTypes.POKEMONS_ADD_FAVORITE_SUCCESS:
+            state = { ...state, favoritePokemons: action.payload }
+            return state
+        case PokemonActionTypes.POKEMONS_GET_FAVORITE_SUCCESS:
             state = { ...state, favoritePokemons: action.payload }
             return state
         default:

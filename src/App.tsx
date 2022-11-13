@@ -10,6 +10,7 @@ import {
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './components/HomePage'
 import NavigationBar from './components/NavigationBar'
+import Favorites from './components/Favorites'
 
 const defaultOptions: DefaultOptions = {
     watchQuery: {
@@ -34,6 +35,9 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                </Routes>
+                <Routes>
+                    <Route path="/favorites" element={<Favorites />} />
                 </Routes>
             </BrowserRouter>
         </ApolloProvider>

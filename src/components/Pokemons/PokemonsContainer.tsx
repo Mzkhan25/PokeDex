@@ -4,7 +4,7 @@ import Pokemons from './Pokemons'
 
 interface Props {
     pokemons: [IPokemon]
-    addFavorite: (pokemon: IPokemon) => void
+    addFavorite?: (pokemon: IPokemon) => void
 }
 
 export default function PokemonsContainer(props: Props) {

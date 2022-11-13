@@ -1,4 +1,4 @@
-import { IPokeDexState } from './../types/models'
+import { GlobalState, IPokeDexState } from './../types/models'
 import { stat } from 'fs'
 import { IPokemon } from '../types/models'
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
@@ -15,14 +15,39 @@ function* loadTasks() {
     }
 }
 
-export const username = (state: any) => state.pokemonState.favoritePokemons
-
-function* addFavoritesSaga(payload: any) {
+function* addFavoritesSaga(action: any) {
     try {
-        const sd: IPokemon = yield select(username)
-        localStorage.setItem('fav', payload)
+        let favoritePokemons = []
 
-        console.log('favasad', payload, sd)
+        const existingFavoritePokemons =
+            localStorage.getItem('favoritePokemons')
+        if (existingFavoritePokemons != null) {
+            favoritePokemons = JSON.parse(existingFavoritePokemons)
+        }
+
+        favoritePokemons.push(action.payload)
+
+        localStorage.setItem(
+            'favoritePokemons',
+            JSON.stringify(favoritePokemons)
+        )
+
+        yield put(actions.addFavoriteSuccess(action.payload))
+    } catch (e) {
+        console.log(e)
+    }
+}
+function* getFavoriteSaga() {
+    try {
+        let favoritePokemons = []
+
+        const existingFavoritePokemons =
+            localStorage.getItem('favoritePokemons')
+        if (existingFavoritePokemons != null) {
+            favoritePokemons = JSON.parse(existingFavoritePokemons)
+        }
+
+        yield put(actions.getFavoriteSuccess(favoritePokemons))
     } catch (e) {
         console.log(e)
     }
@@ -32,5 +57,6 @@ export function* pokemonsSaga() {
     yield all([
         takeLatest(PokemonActionTypes.POKEMONS_GET_ALL, loadTasks),
         takeLatest(PokemonActionTypes.POKEMONS_ADD_FAVORITE, addFavoritesSaga),
+        takeLatest(PokemonActionTypes.POKEMONS_GET_FAVORITE, getFavoriteSaga),
     ])
 }
