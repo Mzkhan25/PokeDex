@@ -29,6 +29,7 @@ interface IPokemonsGetAllFail {
 }
 interface IPokemonsGetPaginated {
     readonly type: PokemonActionTypes.POKEMONS_GET_PAGINATED
+    payload: number
 }
 interface IPokemonsGetPaginatedSuccess {
     readonly type: PokemonActionTypes.POKEMONS_GET_PAGINATED_SUCCESS
@@ -164,9 +165,10 @@ export function updateSort(sort: ISort): IPokemonUpdateSort {
     }
 }
 
-export function getPaginated(): IPokemonsGetPaginated {
+export function getPaginated(limit: number): IPokemonsGetPaginated {
     return {
         type: PokemonActionTypes.POKEMONS_GET_PAGINATED,
+        payload: limit,
     }
 }
 

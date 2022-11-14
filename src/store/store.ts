@@ -13,7 +13,7 @@ const configureStore = () => {
     sagaMiddleware.run(sagas)
     store.dispatch(getAll())
     store.dispatch(getFavorite())
-    store.dispatch(getPaginated())
+    store.dispatch(getPaginated(10))
 
     return store
 }

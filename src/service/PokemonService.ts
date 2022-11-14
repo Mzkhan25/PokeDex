@@ -21,8 +21,7 @@ export const getPokemons = () => {
         .then((res) => res.data.allPokemon)
 }
 
-export const getPaginatePokemons = () => {
-    const limit = 10
+export const getPaginatePokemons = (limit: number) => {
     return client
         .query({
             query: gql`

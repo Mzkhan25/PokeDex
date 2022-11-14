@@ -12,9 +12,12 @@ function* getAllSaga() {
         yield put(actions.getAllFail())
     }
 }
-function* getPaginatedSaga() {
+function* getPaginatedSaga(action: any) {
     try {
-        const tasks: IPokemon[] = yield call(getPaginatePokemons)
+        const tasks: IPokemon[] = yield call(
+            getPaginatePokemons,
+            action.payload
+        )
         yield put(actions.getPaginatedSuccess(tasks))
     } catch (e) {
         yield put(actions.getPaginatedFail())
