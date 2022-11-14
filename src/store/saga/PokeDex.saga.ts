@@ -1,15 +1,23 @@
 import { IPokemon } from '../types/models'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { PokemonActionTypes } from '../actions/PokeDex.action'
-import { getPokemons } from '../../service/PokemonService'
+import { getPaginatePokemons, getPokemons } from '../../service/PokemonService'
 import * as actions from '../actions/PokeDex.action'
 
-function* loadTasks() {
+function* getAllSaga() {
     try {
         const tasks: IPokemon[] = yield call(getPokemons)
         yield put(actions.getAllSuccess(tasks))
     } catch (e) {
         yield put(actions.getAllFail())
+    }
+}
+function* getPaginatedSaga() {
+    try {
+        const tasks: IPokemon[] = yield call(getPaginatePokemons)
+        yield put(actions.getPaginatedSuccess(tasks))
+    } catch (e) {
+        yield put(actions.getPaginatedFail())
     }
 }
 
@@ -53,7 +61,8 @@ function* getFavoriteSaga() {
 
 export function* pokemonsSaga() {
     yield all([
-        takeLatest(PokemonActionTypes.POKEMONS_GET_ALL, loadTasks),
+        takeLatest(PokemonActionTypes.POKEMONS_GET_ALL, getAllSaga),
+        takeLatest(PokemonActionTypes.POKEMONS_GET_PAGINATED, getPaginatedSaga),
         takeLatest(PokemonActionTypes.POKEMONS_ADD_FAVORITE, addFavoritesSaga),
         takeLatest(PokemonActionTypes.POKEMONS_GET_FAVORITE, getFavoriteSaga),
     ])

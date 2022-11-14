@@ -6,6 +6,7 @@ import HomePage from './components/HomePage'
 import NavigationBar from './components/NavigationBar'
 import Favorites from './components/Favorites'
 import client from './service/client'
+import PaginatedResult from './components/PaginatedResult'
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/favorites" element={<Favorites />} />
+                    <Route path="/paginated" element={<PaginatedResult />} />
                 </Routes>
             </BrowserRouter>
         </ApolloProvider>

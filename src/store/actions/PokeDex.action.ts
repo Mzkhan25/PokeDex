@@ -3,6 +3,9 @@ export enum PokemonActionTypes {
     POKEMONS_GET_ALL = '[POKEMONS] Get All',
     POKEMONS_GET_ALL_SUCCESS = '[POKEMONS] Get All Success',
     POKEMONS_GET_ALL_FAIL = '[POKEMONS] Get All Fail',
+    POKEMONS_GET_PAGINATED = '[POKEMONS] Get Paginated',
+    POKEMONS_GET_PAGINATED_SUCCESS = '[POKEMONS] Get Paginated Success',
+    POKEMONS_GET_PAGINATED_FAIL = '[POKEMONS] Get Paginated Fail',
     POKEMONS_ADD_FAVORITE = '[POKEMONS] Add Favorite',
     POKEMONS_ADD_FAVORITE_SUCCESS = '[POKEMONS] Add Favorite Success',
     POKEMONS_ADD_FAVORITE_FAIL = '[POKEMONS] Add Favorite Fail',
@@ -23,6 +26,18 @@ interface IPokemonsGetAllSuccess {
 
 interface IPokemonsGetAllFail {
     readonly type: PokemonActionTypes.POKEMONS_GET_ALL_FAIL
+}
+interface IPokemonsGetPaginated {
+    readonly type: PokemonActionTypes.POKEMONS_GET_PAGINATED
+}
+interface IPokemonsGetPaginatedSuccess {
+    readonly type: PokemonActionTypes.POKEMONS_GET_PAGINATED_SUCCESS
+
+    payload: IPokemon[]
+}
+
+interface IPokemonsGetPaginatedFail {
+    readonly type: PokemonActionTypes.POKEMONS_GET_PAGINATED_FAIL
 }
 
 interface IPokemonAddFavorite {
@@ -57,7 +72,6 @@ interface IPokemonSearchByName {
 
 interface IPokemonUpdateSort {
     readonly type: PokemonActionTypes.POKEMONS_UPDATE_SORT
-
     payload: ISort
 }
 
@@ -73,6 +87,9 @@ export type Actions =
     | IPokemonGetFavoriteFail
     | IPokemonSearchByName
     | IPokemonUpdateSort
+    | IPokemonsGetPaginated
+    | IPokemonsGetPaginatedSuccess
+    | IPokemonsGetPaginatedFail
 
 export function getAll(): IPokemonsGetAll {
     return {
@@ -144,5 +161,26 @@ export function updateSort(sort: ISort): IPokemonUpdateSort {
     return {
         type: PokemonActionTypes.POKEMONS_UPDATE_SORT,
         payload: sort,
+    }
+}
+
+export function getPaginated(): IPokemonsGetPaginated {
+    return {
+        type: PokemonActionTypes.POKEMONS_GET_PAGINATED,
+    }
+}
+
+export function getPaginatedSuccess(
+    pokemons: IPokemon[]
+): IPokemonsGetPaginatedSuccess {
+    return {
+        type: PokemonActionTypes.POKEMONS_GET_PAGINATED_SUCCESS,
+        payload: pokemons,
+    }
+}
+
+export function getPaginatedFail(): IPokemonsGetPaginatedFail {
+    return {
+        type: PokemonActionTypes.POKEMONS_GET_PAGINATED_FAIL,
     }
 }

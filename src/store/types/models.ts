@@ -25,6 +25,7 @@ export interface IPokeDexState {
     favoritePokemons: IPokemon[] | null
     searchTerm: string
     sort?: ISort
+    paginatedPokemons: IPokemon[] | null
 }
 
 export interface GlobalState {
