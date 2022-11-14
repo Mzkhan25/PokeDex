@@ -19,9 +19,13 @@ const NavigationBar = (props: Props) => {
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="/">PokeDex</Navbar.Brand>
+                    <Navbar.Brand href={`${process.env.PUBLIC_URL}/`}>
+                        PokeDex
+                    </Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="/favorites">Favorites</Nav.Link>
+                        <Nav.Link href={`${process.env.PUBLIC_URL}/favorites`}>
+                            Favorites
+                        </Nav.Link>
                     </Nav>
                     <Form className="d-flex">
                         <Form.Control
