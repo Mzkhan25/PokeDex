@@ -12,8 +12,7 @@ interface Props {
     searchByName: (name: string) => void
 }
 const NavigationBar = (props: Props) => {
-    const [search, setSearch] = useState('')
-    const { searchByName } = props
+    const { searchTerm, searchByName } = props
 
     return (
         <>
@@ -36,17 +35,11 @@ const NavigationBar = (props: Props) => {
                             placeholder="Search"
                             className="me-2"
                             aria-label="Search"
-                            value={search}
+                            value={searchTerm}
                             onChange={(e) => {
-                                setSearch(e.target.value)
+                                searchByName(e.target.value)
                             }}
                         />
-                        <Button
-                            variant="outline-success"
-                            onClick={() => searchByName(search)}
-                        >
-                            Search
-                        </Button>
                     </Form>
                 </Container>
             </Navbar>

@@ -4,11 +4,12 @@ import Pokemons from './Pokemons'
 
 interface Props {
     pokemons: IPokemon[]
-    addFavorite?: (pokemon: IPokemon) => void
+    favPokemonsIds?: number[]
+    favoriteClicked?: (pokemon: IPokemon, isSelected: boolean) => void
 }
 
 export default function PokemonsContainer(props: Props) {
-    const { pokemons, addFavorite } = props
+    const { pokemons, favPokemonsIds, favoriteClicked } = props
 
     return (
         <>
@@ -18,7 +19,8 @@ export default function PokemonsContainer(props: Props) {
                         <Pokemons
                             pokemon={pokemon}
                             key={index}
-                            addFavorite={addFavorite}
+                            selected={!!favPokemonsIds?.includes(pokemon.id)}
+                            favoriteClicked={favoriteClicked}
                         />
                     )
                 })}

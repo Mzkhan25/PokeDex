@@ -5,22 +5,26 @@ import PokemonsType from './PokemonsType'
 
 interface Props {
     pokemon: IPokemon
-    addFavorite?: (pokemon: IPokemon) => void
+    selected: boolean
+    favoriteClicked?: (pokemon: IPokemon, isSelected: boolean) => void
 }
 
 export default function Pokemons(props: Props) {
-    const { pokemon, addFavorite } = props
+    const { pokemon, selected, favoriteClicked } = props
 
     return (
         <>
             <Card className="me-4 mb-4" style={{ width: '20%' }}>
                 <Card.Img variant="top" src={pokemon?.sprites?.front_default} />
-                {addFavorite && (
+                {favoriteClicked && (
                     <Card.ImgOverlay>
                         <i
-                            className="fa fa-heart-o pull-right"
+                            className={
+                                'fa pull-right ' +
+                                (selected ? 'fa-heart' : 'fa-heart-o')
+                            }
                             onClick={() => {
-                                addFavorite(pokemon)
+                                favoriteClicked(pokemon, selected)
                             }}
                         />
                     </Card.ImgOverlay>

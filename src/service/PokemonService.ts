@@ -7,6 +7,7 @@ export const getPokemons = () => {
             query: gql`
                 {
                     allPokemon {
+                        id
                         name
                         types {
                             name
@@ -28,6 +29,7 @@ export const getPaginatePokemons = (limit: number) => {
 
              {
                     allPokemon(limit: ${limit}) {
+                        id
                         name
                         types {
                             name

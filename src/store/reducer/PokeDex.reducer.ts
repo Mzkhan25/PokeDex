@@ -27,6 +27,9 @@ export const pokeDexReducer = (state = initialState, action: any) => {
         case PokemonActionTypes.POKEMONS_GET_FAVORITE_SUCCESS:
             state = { ...state, favoritePokemons: action.payload }
             return state
+        case PokemonActionTypes.POKEMONS_REMOVE_FAVORITE_SUCCESS:
+            state.favoritePokemons = action.payload
+            return state
         case PokemonActionTypes.POKEMONS_SEARCH_BY_NAME:
             state = { ...state, searchTerm: action.payload }
             return state

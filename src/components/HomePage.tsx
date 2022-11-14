@@ -1,7 +1,11 @@
 import React from 'react'
 import { Dropdown, DropdownButton } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { addFavorite, updateSort } from '../store/actions/PokeDex.action'
+import {
+    addFavorite,
+    removeFavorite,
+    updateSort,
+} from '../store/actions/PokeDex.action'
 import { IPokemon, GlobalState, ISort } from '../store/types/models'
 import { filteredResult } from '../utils/filters.util'
 import PokemonsContainer from './Pokemons/PokemonsContainer'
@@ -10,15 +14,29 @@ interface Props {
     pokemons: IPokemon[] | null
     searchTerm?: string
     sort?: ISort
+    favoritePokemons: IPokemon[] | null
     addFavorite: (pokemon: IPokemon) => void
+    removeFavorite: (id: number) => void
     updateSort: (filter: ISort) => void
 }
 
 const HomePage = (props: Props) => {
-    const { pokemons, searchTerm, sort, addFavorite, updateSort } = props
-
+    const {
+        pokemons,
+        searchTerm,
+        sort,
+        favoritePokemons,
+        addFavorite,
+        removeFavorite,
+        updateSort,
+    } = props
+    const favPokemonsIds = favoritePokemons?.map((pokemon) => pokemon.id)
     if (!pokemons) {
         return <>loading</>
+    }
+
+    const favoriteClicked = (pokemon: IPokemon, isSelected: boolean) => {
+        isSelected ? removeFavorite(pokemon.id) : addFavorite(pokemon)
     }
 
     const pokemonsList = filteredResult(pokemons, searchTerm, sort)
@@ -27,7 +45,7 @@ const HomePage = (props: Props) => {
         <>
             <DropdownButton
                 title="Sort"
-                className="container d-flex dropdown justify-content-end my-4"
+                className="container d-flex dropdown my-4"
             >
                 <Dropdown.Item
                     onClick={() => {
@@ -62,7 +80,8 @@ const HomePage = (props: Props) => {
                 </Dropdown.Item>
             </DropdownButton>
             <PokemonsContainer
-                addFavorite={addFavorite}
+                favPokemonsIds={favPokemonsIds}
+                favoriteClicked={favoriteClicked}
                 pokemons={pokemonsList}
             />
         </>
@@ -74,6 +93,7 @@ const mapStateToProps = (state: GlobalState) => {
         pokemons: state?.pokemonState?.pokemons,
         searchTerm: state?.pokemonState?.searchTerm,
         sort: state?.pokemonState?.sort,
+        favoritePokemons: state?.pokemonState?.favoritePokemons,
     }
 }
 
@@ -81,6 +101,9 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         addFavorite: (pokemon: IPokemon) => {
             dispatch(addFavorite(pokemon))
+        },
+        removeFavorite: (id: number) => {
+            dispatch(removeFavorite(id))
         },
         updateSort: (sort: ISort) => {
             dispatch(updateSort(sort))

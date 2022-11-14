@@ -12,6 +12,9 @@ export enum PokemonActionTypes {
     POKEMONS_GET_FAVORITE = '[POKEMONS] Get Favorite',
     POKEMONS_GET_FAVORITE_SUCCESS = '[POKEMONS] Get Favorite Success',
     POKEMONS_GET_FAVORITE_FAIL = '[POKEMONS] Get Favorite Fail',
+    POKEMONS_REMOVE_FAVORITE = '[POKEMONS] Remove Favorite',
+    POKEMONS_REMOVE_FAVORITE_SUCCESS = '[POKEMONS] Remove Favorite Success',
+    POKEMONS_REMOVE_FAVORITE_FAIL = '[POKEMONS] Remove Favorite Fail',
     POKEMONS_SEARCH_BY_NAME = '[POKEMONS] Search by name',
     POKEMONS_UPDATE_SORT = '[POKEMONS] Update Sort',
 }
@@ -66,6 +69,19 @@ interface IPokemonGetFavoriteFail {
     readonly type: PokemonActionTypes.POKEMONS_GET_FAVORITE_FAIL
 }
 
+interface IPokemonRemoveFavorite {
+    readonly type: PokemonActionTypes.POKEMONS_REMOVE_FAVORITE
+    payload: number
+}
+interface IPokemonRemoveFavoriteSuccess {
+    readonly type: PokemonActionTypes.POKEMONS_REMOVE_FAVORITE_SUCCESS
+    payload: IPokemon[]
+}
+
+interface IPokemonRemoveFavoriteFail {
+    readonly type: PokemonActionTypes.POKEMONS_REMOVE_FAVORITE_FAIL
+}
+
 interface IPokemonSearchByName {
     readonly type: PokemonActionTypes.POKEMONS_SEARCH_BY_NAME
     payload: string
@@ -91,6 +107,9 @@ export type Actions =
     | IPokemonsGetPaginated
     | IPokemonsGetPaginatedSuccess
     | IPokemonsGetPaginatedFail
+    | IPokemonRemoveFavorite
+    | IPokemonRemoveFavoriteSuccess
+    | IPokemonRemoveFavoriteFail
 
 export function getAll(): IPokemonsGetAll {
     return {
@@ -184,5 +203,26 @@ export function getPaginatedSuccess(
 export function getPaginatedFail(): IPokemonsGetPaginatedFail {
     return {
         type: PokemonActionTypes.POKEMONS_GET_PAGINATED_FAIL,
+    }
+}
+
+export function removeFavorite(id: number): IPokemonRemoveFavorite {
+    return {
+        type: PokemonActionTypes.POKEMONS_REMOVE_FAVORITE,
+        payload: id,
+    }
+}
+export function removeFavoriteSuccess(
+    pokemon: IPokemon[]
+): IPokemonRemoveFavoriteSuccess {
+    return {
+        type: PokemonActionTypes.POKEMONS_REMOVE_FAVORITE_SUCCESS,
+        payload: pokemon,
+    }
+}
+
+export function removeFavoriteFail(): IPokemonRemoveFavoriteFail {
+    return {
+        type: PokemonActionTypes.POKEMONS_REMOVE_FAVORITE_FAIL,
     }
 }

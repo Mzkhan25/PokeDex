@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {
     addFavorite,
     getPaginated,
+    removeFavorite,
     updateSort,
 } from '../store/actions/PokeDex.action'
 import { IPokemon, GlobalState, ISort } from '../store/types/models'
@@ -15,6 +16,8 @@ interface Props {
     paginatedPokemons: IPokemon[] | null
     searchTerm?: string
     sort?: ISort
+    favoritePokemons: IPokemon[] | null
+    removeFavorite: (id: number) => void
     addFavorite: (pokemon: IPokemon) => void
     updateSort: (filter: ISort) => void
     getPaginated: (limit: number) => void
@@ -25,7 +28,9 @@ const PaginatedResult = (props: Props) => {
         paginatedPokemons,
         searchTerm,
         sort,
+        favoritePokemons,
         addFavorite,
+        removeFavorite,
         updateSort,
         getPaginated,
     } = props
@@ -34,6 +39,10 @@ const PaginatedResult = (props: Props) => {
         return <>loading</>
     }
 
+    const favPokemonsIds = favoritePokemons?.map((pokemon) => pokemon.id)
+    const favoriteClicked = (pokemon: IPokemon, isSelected: boolean) => {
+        isSelected ? removeFavorite(pokemon.id) : addFavorite(pokemon)
+    }
     const pokemonsList = filteredResult(paginatedPokemons, searchTerm, sort)
 
     return (
@@ -41,7 +50,7 @@ const PaginatedResult = (props: Props) => {
             <div>
                 <DropdownButton
                     title="Sort"
-                    className="container d-flex dropdown justify-content-end my-4"
+                    className="container d-flex dropdown my-4"
                 >
                     <Dropdown.Item
                         onClick={() => {
@@ -76,7 +85,8 @@ const PaginatedResult = (props: Props) => {
                     </Dropdown.Item>
                 </DropdownButton>
                 <PokemonsContainer
-                    addFavorite={addFavorite}
+                    favPokemonsIds={favPokemonsIds}
+                    favoriteClicked={favoriteClicked}
                     pokemons={pokemonsList}
                 />
                 <BottomScrollListener
@@ -94,6 +104,7 @@ const mapStateToProps = (state: GlobalState) => {
         paginatedPokemons: state?.pokemonState?.paginatedPokemons,
         searchTerm: state?.pokemonState?.searchTerm,
         sort: state?.pokemonState?.sort,
+        favoritePokemons: state?.pokemonState?.favoritePokemons,
     }
 }
 
@@ -101,6 +112,9 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         addFavorite: (pokemon: IPokemon) => {
             dispatch(addFavorite(pokemon))
+        },
+        removeFavorite: (id: number) => {
+            dispatch(removeFavorite(id))
         },
         updateSort: (sort: ISort) => {
             dispatch(updateSort(sort))

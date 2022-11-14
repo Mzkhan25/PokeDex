@@ -14,6 +14,7 @@ export interface Sprite {
 }
 
 export interface IPokemon {
+    id: number
     name: string
     types: PokemonType[]
     sprites: Sprite
