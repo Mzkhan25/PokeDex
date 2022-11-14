@@ -1,4 +1,4 @@
-import { IPokemon, ISort } from './../store/types/models'
+import { IPokemon, ISort, PokemonType } from './../store/types/models'
 export function filteredResult(
     pokemonList: IPokemon[],
     searchTerm?: string,
@@ -27,13 +27,15 @@ export function sortedResult(pokemonList: IPokemon[], sort: ISort): IPokemon[] {
     let sorted: IPokemon[] = []
 
     if (sort === ISort.SORT_BY_NAME_ASC) {
-        sorted = pokemonList?.sort((a, b) =>
-            a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-        )
+        sorted = pokemonList?.sort((a, b) => a.name.localeCompare(b.name))
     } else if (sort === ISort.SORT_BY_NAME_DESC) {
-        sorted = pokemonList?.sort((a, b) =>
-            a.name < b.name ? 1 : b.name < a.name ? -1 : 0
-        )
+        sorted = pokemonList?.sort((a, b) => b.name.localeCompare(a.name))
     }
     return sorted
+}
+export function sortedType(pokemon: IPokemon): IPokemon {
+    let sort: PokemonType[] = []
+    sort = pokemon.types.sort((a, b) => a.name.localeCompare(b.name))
+    pokemon.types = sort
+    return pokemon
 }

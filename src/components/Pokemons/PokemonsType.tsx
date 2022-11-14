@@ -2,7 +2,7 @@ import React, { Key } from 'react'
 import { PokemonType } from '../../store/types/models'
 
 interface Props {
-    pokemonsType: [PokemonType]
+    pokemonsType: PokemonType[]
 }
 
 export default function PokemonsType(props: Props) {

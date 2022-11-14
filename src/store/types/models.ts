@@ -13,7 +13,7 @@ export interface Sprite {
 
 export interface IPokemon {
     name: string
-    types: [PokemonType]
+    types: PokemonType[]
     sprites: Sprite
 }
 
