@@ -30,9 +30,8 @@ export default function Pokemons(props: Props) {
                     <Card.Title className="text-capitalize">
                         {pokemon?.name}
                     </Card.Title>
-                    <Card.Body>
-                        <PokemonsType pokemonsType={pokemon.types} />
-                    </Card.Body>
+
+                    <PokemonsType pokemonsType={pokemon.types} />
                 </Card.Body>
             </Card>
         </>
