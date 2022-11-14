@@ -44,6 +44,22 @@ const HomePage = (props: Props) => {
                 >
                     Sort by Descending names
                 </Dropdown.Item>
+                <Dropdown.Item
+                    as="button"
+                    onClick={() => {
+                        updateSort(ISort.SORT_BY_TYPE_ASC)
+                    }}
+                >
+                    Sort by Ascending Types
+                </Dropdown.Item>
+                <Dropdown.Item
+                    as="button"
+                    onClick={() => {
+                        updateSort(ISort.SORT_BY_TYPE_DESC)
+                    }}
+                >
+                    Sort by Ascending Desc
+                </Dropdown.Item>
             </DropdownButton>
             <PokemonsContainer
                 addFavorite={addFavorite}

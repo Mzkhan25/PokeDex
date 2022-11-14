@@ -1,3 +1,4 @@
+import { Policies } from '@apollo/client/cache'
 import { IPokemon, ISort, PokemonType } from './../store/types/models'
 export function filteredResult(
     pokemonList: IPokemon[],
@@ -30,12 +31,35 @@ export function sortedResult(pokemonList: IPokemon[], sort: ISort): IPokemon[] {
         sorted = pokemonList?.sort((a, b) => a.name.localeCompare(b.name))
     } else if (sort === ISort.SORT_BY_NAME_DESC) {
         sorted = pokemonList?.sort((a, b) => b.name.localeCompare(a.name))
+    } else if (sort === ISort.SORT_BY_TYPE_ASC) {
+        sorted = pokemonList?.map((pokemon) => {
+            return sortedPokemonType(pokemon, sort)
+        })
+        sorted = pokemonList?.sort((a, b) =>
+            a.types[0].name.localeCompare(b.types[0].name)
+        )
+    } else if (sort === ISort.SORT_BY_TYPE_DESC) {
+        sorted = pokemonList?.map((pokemon) => {
+            return sortedPokemonType(pokemon, sort)
+        })
+        sorted = pokemonList?.sort((a, b) =>
+            b.types[0].name.localeCompare(a.types[0].name)
+        )
     }
     return sorted
 }
-export function sortedType(pokemon: IPokemon): IPokemon {
-    let sort: PokemonType[] = []
-    sort = pokemon.types.sort((a, b) => a.name.localeCompare(b.name))
-    pokemon.types = sort
+export function sortedPokemonType(pokemon: IPokemon, sort: ISort): IPokemon {
+    let sortedPokemonType: PokemonType[] = []
+    if (sort === ISort.SORT_BY_TYPE_ASC) {
+        sortedPokemonType = pokemon.types.sort((a, b) =>
+            a.name.localeCompare(b.name)
+        )
+    } else if (sort === ISort.SORT_BY_TYPE_DESC) {
+        sortedPokemonType = pokemon.types.sort((a, b) =>
+            b.name.localeCompare(a.name)
+        )
+    }
+    pokemon.types = sortedPokemonType
+
     return pokemon
 }

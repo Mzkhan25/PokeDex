@@ -1,6 +1,8 @@
 export enum ISort {
     SORT_BY_NAME_ASC = 'Sort by name ascending',
     SORT_BY_NAME_DESC = 'Sort by name descending',
+    SORT_BY_TYPE_ASC = 'Sort by type ascending',
+    SORT_BY_TYPE_DESC = 'Sort by type descending',
 }
 
 export interface PokemonType {
