@@ -13,6 +13,11 @@ export interface Sprite {
     front_default: string
 }
 
+export interface IPaginatedFilter {
+    limit?: number
+    filter?: boolean
+}
+
 export interface IPokemon {
     id: number
     name: string
@@ -26,7 +31,6 @@ export interface IPokeDexState {
     favoritePokemons: IPokemon[] | null
     searchTerm: string
     sort?: ISort
-    paginatedPokemons: IPokemon[] | null
 }
 
 export interface GlobalState {

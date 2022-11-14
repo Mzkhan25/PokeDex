@@ -1,4 +1,3 @@
-import { Policies } from '@apollo/client/cache'
 import { IPokemon, ISort, PokemonType } from './../store/types/models'
 export function filteredResult(
     pokemonList: IPokemon[],
@@ -27,37 +26,57 @@ export function searchedResult(
 export function sortedResult(pokemonList: IPokemon[], sort: ISort): IPokemon[] {
     let sorted: IPokemon[] = []
 
-    if (sort === ISort.SORT_BY_NAME_ASC) {
-        sorted = pokemonList?.sort((a, b) => a.name.localeCompare(b.name))
-    } else if (sort === ISort.SORT_BY_NAME_DESC) {
-        sorted = pokemonList?.sort((a, b) => b.name.localeCompare(a.name))
-    } else if (sort === ISort.SORT_BY_TYPE_ASC) {
-        sorted = pokemonList?.map((pokemon) => {
-            return sortedPokemonType(pokemon, sort)
-        })
-        sorted = pokemonList?.sort((a, b) =>
-            a.types[0].name.localeCompare(b.types[0].name)
-        )
-    } else if (sort === ISort.SORT_BY_TYPE_DESC) {
-        sorted = pokemonList?.map((pokemon) => {
-            return sortedPokemonType(pokemon, sort)
-        })
-        sorted = pokemonList?.sort((a, b) =>
-            b.types[0].name.localeCompare(a.types[0].name)
-        )
+    switch (sort) {
+        case ISort.SORT_BY_NAME_ASC:
+            sorted = pokemonList?.sort((a, b) => a.name.localeCompare(b.name))
+            break
+
+        case ISort.SORT_BY_NAME_DESC:
+            sorted = pokemonList?.sort((a, b) => b.name.localeCompare(a.name))
+            break
+
+        case ISort.SORT_BY_TYPE_ASC:
+            sorted = pokemonList?.map((pokemon) => {
+                return sortedPokemonType(pokemon, sort)
+            })
+            sorted = pokemonList?.sort((a, b) =>
+                a.types[0].name.localeCompare(b.types[0].name)
+            )
+            break
+
+        case ISort.SORT_BY_TYPE_DESC:
+            sorted = pokemonList?.map((pokemon) => {
+                return sortedPokemonType(pokemon, sort)
+            })
+            sorted = pokemonList?.sort((a, b) =>
+                b.types[0].name.localeCompare(a.types[0].name)
+            )
+            break
+
+        default:
+            break
     }
     return sorted
 }
 export function sortedPokemonType(pokemon: IPokemon, sort: ISort): IPokemon {
     let sortedPokemonType: PokemonType[] = []
-    if (sort === ISort.SORT_BY_TYPE_ASC) {
-        sortedPokemonType = pokemon.types.sort((a, b) =>
-            a.name.localeCompare(b.name)
-        )
-    } else if (sort === ISort.SORT_BY_TYPE_DESC) {
-        sortedPokemonType = pokemon.types.sort((a, b) =>
-            b.name.localeCompare(a.name)
-        )
+
+    switch (sort) {
+        case ISort.SORT_BY_TYPE_ASC:
+            sortedPokemonType = pokemon.types.sort((a, b) =>
+                a.name.localeCompare(b.name)
+            )
+
+            break
+        case ISort.SORT_BY_TYPE_DESC:
+            sortedPokemonType = pokemon.types.sort((a, b) =>
+                b.name.localeCompare(a.name)
+            )
+
+            break
+
+        default:
+            break
     }
     pokemon.types = sortedPokemonType
 

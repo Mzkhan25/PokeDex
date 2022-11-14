@@ -25,9 +25,6 @@ const NavigationBar = (props: Props) => {
                         <Nav.Link href={`${process.env.PUBLIC_URL}/favorites`}>
                             Favorites
                         </Nav.Link>
-                        <Nav.Link href={`${process.env.PUBLIC_URL}/paginated`}>
-                            Paginated
-                        </Nav.Link>
                     </Nav>
                     <Form className="d-flex">
                         <Form.Control

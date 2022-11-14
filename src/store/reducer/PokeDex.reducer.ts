@@ -5,7 +5,6 @@ const initialState: IPokeDexState = {
     loading: true,
     pokemons: null,
     favoritePokemons: null,
-    paginatedPokemons: null,
     searchTerm: '',
 }
 
@@ -17,7 +16,7 @@ export const pokeDexReducer = (state = initialState, action: any) => {
         case PokemonActionTypes.POKEMONS_GET_PAGINATED_SUCCESS:
             state = {
                 ...state,
-                paginatedPokemons: action.payload,
+                pokemons: action.payload,
                 loading: false,
             }
             return state

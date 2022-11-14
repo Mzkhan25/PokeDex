@@ -1,4 +1,4 @@
-import { ISort, IPokemon } from './../types/models'
+import { ISort, IPokemon, IPaginatedFilter } from './../types/models'
 export enum PokemonActionTypes {
     POKEMONS_GET_ALL = '[POKEMONS] Get All',
     POKEMONS_GET_ALL_SUCCESS = '[POKEMONS] Get All Success',
@@ -21,6 +21,7 @@ export enum PokemonActionTypes {
 
 interface IPokemonsGetAll {
     readonly type: PokemonActionTypes.POKEMONS_GET_ALL
+    payload: boolean
 }
 interface IPokemonsGetAllSuccess {
     readonly type: PokemonActionTypes.POKEMONS_GET_ALL_SUCCESS
@@ -32,7 +33,7 @@ interface IPokemonsGetAllFail {
 }
 interface IPokemonsGetPaginated {
     readonly type: PokemonActionTypes.POKEMONS_GET_PAGINATED
-    payload: number
+    payload: IPaginatedFilter
 }
 interface IPokemonsGetPaginatedSuccess {
     readonly type: PokemonActionTypes.POKEMONS_GET_PAGINATED_SUCCESS
@@ -111,9 +112,10 @@ export type Actions =
     | IPokemonRemoveFavoriteSuccess
     | IPokemonRemoveFavoriteFail
 
-export function getAll(): IPokemonsGetAll {
+export function getAll(filter: boolean): IPokemonsGetAll {
     return {
         type: PokemonActionTypes.POKEMONS_GET_ALL,
+        payload: filter,
     }
 }
 
@@ -184,10 +186,12 @@ export function updateSort(sort: ISort): IPokemonUpdateSort {
     }
 }
 
-export function getPaginated(limit: number): IPokemonsGetPaginated {
+export function getPaginated(
+    paginatedFilter: IPaginatedFilter
+): IPokemonsGetPaginated {
     return {
         type: PokemonActionTypes.POKEMONS_GET_PAGINATED,
-        payload: limit,
+        payload: paginatedFilter,
     }
 }
 
