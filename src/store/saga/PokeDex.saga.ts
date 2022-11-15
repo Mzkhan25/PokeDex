@@ -90,5 +90,9 @@ export function* pokemonsSaga() {
             PokemonActionTypes.POKEMONS_REMOVE_FAVORITE_SUCCESS,
             getFavoriteSaga
         ),
+        takeLatest(
+            PokemonActionTypes.POKEMONS_GET_PAGINATED_SUCCESS,
+            getFavoriteSaga
+        ),
     ])
 }

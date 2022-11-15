@@ -1,4 +1,5 @@
 import React, { Key } from 'react'
+import { Row } from 'react-bootstrap'
 import { IPokemon } from '../../store/types/models'
 import Pokemons from './Pokemons'
 
@@ -14,16 +15,20 @@ export default function PokemonsContainer(props: Props) {
     return (
         <>
             <div className="container d-flex flex-row bd-highlight flex-wrap justify-content-start">
-                {pokemons.map((pokemon: IPokemon, index: Key) => {
-                    return (
-                        <Pokemons
-                            pokemon={pokemon}
-                            key={index}
-                            selected={!!favPokemonsIds?.includes(pokemon.id)}
-                            favoriteClicked={favoriteClicked}
-                        />
-                    )
-                })}
+                <Row md={5} sm={3} className="mx-2">
+                    {pokemons.map((pokemon: IPokemon, index: Key) => {
+                        return (
+                            <Pokemons
+                                pokemon={pokemon}
+                                key={index}
+                                selected={
+                                    !!favPokemonsIds?.includes(pokemon.id)
+                                }
+                                favoriteClicked={favoriteClicked}
+                            />
+                        )
+                    })}
+                </Row>
             </div>
         </>
     )

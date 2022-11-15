@@ -14,7 +14,7 @@ export default function Pokemons(props: Props) {
 
     return (
         <>
-            <Card className="me-4 mb-4" style={{ width: '20%' }}>
+            <Card className="me-4 mb-4">
                 <Card.Img variant="top" src={pokemon?.sprites?.front_default} />
                 {favoriteClicked && (
                     <Card.ImgOverlay>
