@@ -9,6 +9,7 @@ describe('Filters', function () {
     it('should sort pokemons list in ascending order', function () {
         const pokemons: IPokemon[] = [
             {
+                id: 1,
                 name: 'Pikachu',
                 types: [{ name: 'Electricity' }],
                 sprites: {
@@ -16,6 +17,7 @@ describe('Filters', function () {
                 },
             },
             {
+                id: 1,
                 name: 'Balbasur',
                 types: [{ name: 'Water' }],
                 sprites: {
@@ -25,6 +27,7 @@ describe('Filters', function () {
         ]
         const sortedPokemons: IPokemon[] = [
             {
+                id: 1,
                 name: 'Balbasur',
                 types: [{ name: 'Water' }],
                 sprites: {
@@ -32,6 +35,7 @@ describe('Filters', function () {
                 },
             },
             {
+                id: 1,
                 name: 'Pikachu',
                 types: [{ name: 'Electricity' }],
                 sprites: {
@@ -46,6 +50,7 @@ describe('Filters', function () {
     it('should sort pokemons list in descending order', function () {
         const pokemons: IPokemon[] = [
             {
+                id: 1,
                 name: 'Balbasur',
                 types: [{ name: 'Water' }],
                 sprites: {
@@ -53,6 +58,7 @@ describe('Filters', function () {
                 },
             },
             {
+                id: 1,
                 name: 'Pikachu',
                 types: [{ name: 'Electricity' }],
                 sprites: {
@@ -62,6 +68,7 @@ describe('Filters', function () {
         ]
         const sortedPokemons: IPokemon[] = [
             {
+                id: 1,
                 name: 'Pikachu',
                 types: [{ name: 'Electricity' }],
                 sprites: {
@@ -69,6 +76,7 @@ describe('Filters', function () {
                 },
             },
             {
+                id: 1,
                 name: 'Balbasur',
                 types: [{ name: 'Water' }],
                 sprites: {
@@ -84,6 +92,7 @@ describe('Filters', function () {
     it('should search pokemon list', function () {
         const pokemons: IPokemon[] = [
             {
+                id: 1,
                 name: 'Pikachu',
                 types: [{ name: 'Electricity' }],
                 sprites: {
@@ -91,6 +100,7 @@ describe('Filters', function () {
                 },
             },
             {
+                id: 1,
                 name: 'Balbasur',
                 types: [{ name: 'Water' }],
                 sprites: {
@@ -100,6 +110,7 @@ describe('Filters', function () {
         ]
         const sortedPokemons: IPokemon[] = [
             {
+                id: 1,
                 name: 'Pikachu',
                 types: [{ name: 'Electricity' }],
                 sprites: {
@@ -112,6 +123,7 @@ describe('Filters', function () {
 
     it('should sort pokemon type in ascending order', function () {
         const pokemon: IPokemon = {
+            id: 1,
             name: 'Pikachu',
             types: [{ name: 'Water' }, { name: 'Fire' }],
             sprites: {
@@ -119,6 +131,7 @@ describe('Filters', function () {
             },
         }
         const sortedPokemonTypes: IPokemon = {
+            id: 1,
             name: 'Pikachu',
             types: [{ name: 'Fire' }, { name: 'Water' }],
             sprites: {
@@ -132,6 +145,7 @@ describe('Filters', function () {
 
     it('should sort pokemon type in descending order', function () {
         const pokemon: IPokemon = {
+            id: 1,
             name: 'Pikachu',
             types: [{ name: 'Fire' }, { name: 'Grass' }],
             sprites: {
@@ -139,6 +153,7 @@ describe('Filters', function () {
             },
         }
         const sortedPokemonTypes: IPokemon = {
+            id: 1,
             name: 'Pikachu',
             types: [{ name: 'Grass' }, { name: 'Fire' }],
             sprites: {
@@ -153,6 +168,7 @@ describe('Filters', function () {
     it('should sort pokemons list in ascending type order', function () {
         const pokemons: IPokemon[] = [
             {
+                id: 1,
                 name: 'Balbasur',
                 types: [{ name: 'Grass' }, { name: 'Fire' }],
                 sprites: {
@@ -160,6 +176,7 @@ describe('Filters', function () {
                 },
             },
             {
+                id: 1,
                 name: 'Pikachu',
                 types: [{ name: 'Elect' }, { name: 'Sand' }],
                 sprites: {
@@ -169,6 +186,7 @@ describe('Filters', function () {
         ]
         const sortedPokemons: IPokemon[] = [
             {
+                id: 1,
                 name: 'Pikachu',
                 types: [{ name: 'Elect' }, { name: 'Sand' }],
                 sprites: {
@@ -176,6 +194,7 @@ describe('Filters', function () {
                 },
             },
             {
+                id: 1,
                 name: 'Balbasur',
                 types: [{ name: 'Fire' }, { name: 'Grass' }],
                 sprites: {
