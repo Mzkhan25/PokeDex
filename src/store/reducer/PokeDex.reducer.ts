@@ -10,9 +10,6 @@ const initialState: IPokeDexState = {
 
 export const pokeDexReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case PokemonActionTypes.POKEMONS_GET_ALL_SUCCESS:
-            state = { ...state, pokemons: action.payload, loading: false }
-            return state
         case PokemonActionTypes.POKEMONS_GET_PAGINATED_SUCCESS:
             state = {
                 ...state,
