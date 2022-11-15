@@ -15,7 +15,7 @@ export default function PokemonsContainer(props: Props) {
     return (
         <>
             <div className="container d-flex flex-row bd-highlight flex-wrap justify-content-start px-4">
-                <Row md={5} sm={4}>
+                <Row md={5} sm={4} className="w-100">
                     {pokemons.map((pokemon: IPokemon, index: Key) => {
                         return (
                             <Pokemons

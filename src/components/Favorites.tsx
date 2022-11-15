@@ -1,5 +1,4 @@
 import React from 'react'
-import { Spinner } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { addFavorite } from '../store/actions/PokeDex.action'
 import { IPokemon, GlobalState } from '../store/types/models'
@@ -11,10 +10,12 @@ interface Props {
 
 const Favorites = (props: Props) => {
     const { favoritePokemons } = props
-    if (!favoritePokemons) {
+    console.log(favoritePokemons)
+    if (!favoritePokemons?.length) {
         return (
-            <div className="d-flex mt-5">
-                You do not have any Favorite pokemon
+            <div className="d-flex mt-5 container">
+                You do not have any Favorite pokemon. You can add them by
+                clicking on heart on pokemon.
             </div>
         )
     }

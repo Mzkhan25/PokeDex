@@ -5,13 +5,12 @@ import client from './client'
 export const getPaginatePokemons = (paginatedFilter: IPaginatedFilter) => {
     const limit = paginatedFilter.limit || -1
     const filter = paginatedFilter.filter || false
-
     return client
         .query({
             query: gql`
 
              {
-                    allPokemon(limit: ${limit}, filter: ${filter}) {
+                    allPokemon(limit: ${limit}, filter: ${!filter}) {
                         id
                         name
                         types {
