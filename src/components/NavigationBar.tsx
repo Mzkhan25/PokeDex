@@ -18,11 +18,13 @@ const NavigationBar = (props: Props) => {
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href={`${process.env.PUBLIC_URL}/`}>
+                    <Navbar.Brand href={`https://mzkhan25.github.io/pokedex/`}>
                         PokeDex
                     </Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href={`${process.env.PUBLIC_URL}/favorites`}>
+                        <Nav.Link
+                            href={`https://mzkhan25.github.io/pokedex/favorites`}
+                        >
                             Favorites
                         </Nav.Link>
                     </Nav>
