@@ -10,7 +10,6 @@ interface Props {
 
 const Favorites = (props: Props) => {
     const { favoritePokemons } = props
-    console.log(favoritePokemons)
     if (!favoritePokemons?.length) {
         return (
             <div className="d-flex mt-5 container">
