@@ -64,7 +64,7 @@ const HomePage = (props: Props) => {
     return (
         <>
             <div>
-                <div className="container d-flex dropdown my-4 mx-2">
+                <div className="container d-flex dropdown my-4 ">
                     <DropdownButton title="Sort" className="me-4">
                         <Dropdown.Item
                             onClick={() => {

@@ -5,6 +5,27 @@ export enum ISort {
     SORT_BY_TYPE_DESC = 'Sort by type descending',
 }
 
+export enum IPokemonType {
+    BUG = 'Bug',
+    DRAGON = 'Dragon',
+    FAIRY = 'Fairy',
+    FIRE = 'Fire',
+    GHOST = 'Ghost',
+    GROUND = 'Ground',
+    NORMAL = 'Normal',
+    PSYCHIC = 'Psychic',
+    STEEL = 'Steel',
+    DARK = 'Dark',
+    ELECTRIC = 'Electric',
+    FIGHTING = 'Fighting',
+    FLYING = 'Flying',
+    GRASS = 'Grass',
+    ICE = 'Ice',
+    POISON = 'Poison',
+    ROCK = 'Rock',
+    WATER = 'Water',
+}
+
 export interface PokemonType {
     name: string
 }

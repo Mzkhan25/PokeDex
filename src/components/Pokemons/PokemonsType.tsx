@@ -1,5 +1,6 @@
 import React, { Key } from 'react'
 import { PokemonType } from '../../store/types/models'
+import { typeColor } from '../../utils/typeColor.util'
 
 interface Props {
     pokemonsType: PokemonType[]
@@ -14,7 +15,9 @@ export default function PokemonsType(props: Props) {
                 {pokemonsType.map((pokemonType: PokemonType, index: Key) => {
                     return (
                         <span
-                            className="badge rounded-pill bg-dark me-2"
+                            className={`badge rounded-pill me-2 ${typeColor(
+                                pokemonType
+                            )}`}
                             key={index}
                         >
                             {pokemonType.name}
