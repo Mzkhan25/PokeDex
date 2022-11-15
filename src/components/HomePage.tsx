@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Dropdown, DropdownButton } from 'react-bootstrap'
+import { Button, Dropdown, DropdownButton, Spinner } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import {
     addFavorite,
@@ -48,7 +48,11 @@ const HomePage = (props: Props) => {
     }, [paginatedFilter])
 
     if (!pokemons) {
-        return <>loading</>
+        return (
+            <div className="d-flex justify-content-around mt-5">
+                <Spinner animation="border" variant="secondary" />
+            </div>
+        )
     }
 
     const favPokemonsIds = favoritePokemons?.map((pokemon) => pokemon.id)
