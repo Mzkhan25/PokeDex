@@ -64,8 +64,8 @@ const HomePage = (props: Props) => {
     return (
         <>
             <div>
-                <div className="container d-flex dropdown my-4 ">
-                    <DropdownButton title="Sort" className="me-4">
+                <div className="container d-flex dropdown my-4 px-md-2">
+                    <DropdownButton title="Sort" className="me-4 ms-0 ms-md-1">
                         <Dropdown.Item
                             onClick={() => {
                                 updateSort(ISort.SORT_BY_NAME_ASC)
