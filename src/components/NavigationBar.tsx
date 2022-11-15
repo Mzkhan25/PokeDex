@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { GlobalState } from '../store/types/models'
 import { connect } from 'react-redux'
@@ -13,18 +12,14 @@ interface Props {
 }
 const NavigationBar = (props: Props) => {
     const { searchTerm, searchByName } = props
-
+    const base = process.env.PUBLIC_URL
     return (
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href={`https://mzkhan25.github.io/pokedex/`}>
-                        PokeDex
-                    </Navbar.Brand>
+                    <Navbar.Brand href={`${base}/`}>PokeDex</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link
-                            href={`https://mzkhan25.github.io/pokedex/favorites`}
-                        >
+                        <Nav.Link href={`${base}/#/favorites`}>
                             Favorites
                         </Nav.Link>
                     </Nav>

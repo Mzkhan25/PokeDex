@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Dropdown, DropdownButton, Spinner } from 'react-bootstrap'
+import { Dropdown, DropdownButton, Spinner } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import {
     addFavorite,
@@ -63,88 +63,84 @@ const HomePage = (props: Props) => {
 
     return (
         <>
-            <div>
-                <div className="container d-flex dropdown my-4 px-md-2">
-                    <DropdownButton title="Sort" className="me-4 ms-0 ms-md-1">
-                        <Dropdown.Item
-                            onClick={() => {
-                                updateSort(ISort.SORT_BY_NAME_ASC)
-                            }}
-                        >
-                            Sort by Ascending names
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                            as="button"
-                            onClick={() => {
-                                updateSort(ISort.SORT_BY_NAME_DESC)
-                            }}
-                        >
-                            Sort by Descending names
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                            as="button"
-                            onClick={() => {
-                                updateSort(ISort.SORT_BY_TYPE_ASC)
-                            }}
-                        >
-                            Sort by Ascending Types
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                            as="button"
-                            onClick={() => {
-                                updateSort(ISort.SORT_BY_TYPE_DESC)
-                            }}
-                        >
-                            Sort by Ascending Desc
-                        </Dropdown.Item>
-                    </DropdownButton>
-                    <DropdownButton title="Response type " className="me-4">
-                        <Dropdown.Item
-                            onClick={() =>
-                                setPaginatedFilter({ limit: 25, filter: true })
-                            }
-                        >
-                            Paginated and filtered
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                            onClick={() => setPaginatedFilter({ limit: 25 })}
-                        >
-                            Paginated and unfiltered
-                        </Dropdown.Item>
-
-                        <Dropdown.Item
-                            onClick={() => setPaginatedFilter({ filter: true })}
-                        >
-                            Unpaginated and filtered
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                            onClick={() =>
-                                setPaginatedFilter({ filter: false })
-                            }
-                        >
-                            Unpaginated and unfiltered
-                        </Dropdown.Item>
-                    </DropdownButton>
-                </div>
-                <PokemonsContainer
-                    favPokemonsIds={favPokemonsIds}
-                    favoriteClicked={favoriteClicked}
-                    pokemons={pokemonsList}
-                />
-                {paginatedFilter?.limit && (
-                    <BottomScrollListener
-                        onBottom={() => {
-                            const limit = paginatedFilter.limit
-                                ? paginatedFilter.limit
-                                : 0
-                            getPaginated({
-                                limit: limit + 25,
-                                filter: paginatedFilter.filter,
-                            })
+            <div className="container d-flex dropdown my-4 px-md-2">
+                <DropdownButton title="Sort" className="me-4 ms-0 ms-md-1">
+                    <Dropdown.Item
+                        onClick={() => {
+                            updateSort(ISort.SORT_BY_NAME_ASC)
                         }}
-                    />
-                )}
+                    >
+                        Sort by Ascending names
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        as="button"
+                        onClick={() => {
+                            updateSort(ISort.SORT_BY_NAME_DESC)
+                        }}
+                    >
+                        Sort by Descending names
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        as="button"
+                        onClick={() => {
+                            updateSort(ISort.SORT_BY_TYPE_ASC)
+                        }}
+                    >
+                        Sort by Ascending Types
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        as="button"
+                        onClick={() => {
+                            updateSort(ISort.SORT_BY_TYPE_DESC)
+                        }}
+                    >
+                        Sort by Ascending Desc
+                    </Dropdown.Item>
+                </DropdownButton>
+                <DropdownButton title="Response type " className="me-4">
+                    <Dropdown.Item
+                        onClick={() =>
+                            setPaginatedFilter({ limit: 25, filter: true })
+                        }
+                    >
+                        Paginated and filtered
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        onClick={() => setPaginatedFilter({ limit: 25 })}
+                    >
+                        Paginated and unfiltered
+                    </Dropdown.Item>
+
+                    <Dropdown.Item
+                        onClick={() => setPaginatedFilter({ filter: true })}
+                    >
+                        Unpaginated and filtered
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        onClick={() => setPaginatedFilter({ filter: false })}
+                    >
+                        Unpaginated and unfiltered
+                    </Dropdown.Item>
+                </DropdownButton>
             </div>
+            <PokemonsContainer
+                favPokemonsIds={favPokemonsIds}
+                favoriteClicked={favoriteClicked}
+                pokemons={pokemonsList}
+            />
+            {paginatedFilter?.limit && (
+                <BottomScrollListener
+                    onBottom={() => {
+                        const limit = paginatedFilter.limit
+                            ? paginatedFilter.limit
+                            : 0
+                        getPaginated({
+                            limit: limit + 25,
+                            filter: paginatedFilter.filter,
+                        })
+                    }}
+                />
+            )}
         </>
     )
 }

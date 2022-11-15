@@ -1,5 +1,4 @@
 import React from 'react'
-import { Spinner } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { addFavorite } from '../store/actions/PokeDex.action'
 import { IPokemon, GlobalState } from '../store/types/models'
